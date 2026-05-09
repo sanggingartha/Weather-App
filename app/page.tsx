@@ -72,7 +72,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
-            className="text-center text-red-200 bg-red-500/20 rounded-md p-2"
+            className="text-center text-red-50 bg-red-500/70 rounded-md backdrop-blur-xl dark:bg-red-400/10 border border-red-200/20 dark:text-red-100 p-2"
           >
             {error}
           </motion.div>
@@ -86,26 +86,35 @@ export default function Home() {
             transition={{ duration: 0.4 }}
           >
             <Card className="bg-white/50 dark:bg-slate-900/50 backdrop-blur border-white/20 dark:border-slate-700">
-              <CardContent>
-                <div className="text-center m-4">
+              <CardContent className="p-6">
+                <div className="text-center">
                   <h2 className="text-2xl font-bold">{weather.name}</h2>
                   <div className="flex items-center justify-center gap-2 mt-2">
-                    <img
+                    <motion.img
                       src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
                       alt={weather.weather[0].description}
-                      width={64}
-                      height={64}
+                      width={80}
+                      height={80}
+                      className="drop-shadow-lg"
+                      animate={{
+                        y: [0, -8, 0],
+                      }}
+                      transition={{
+                        duration: 5.5,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
                     />
                     <div className="text-3xl font-bold">
                       {Math.round(weather.main.temp)}°C
                     </div>
                   </div>
-                  <div className="text-gray-500 mt-1 capitalize">
+                  <div className="text-gray-500 mt-1 capitalize text-base">
                     {weather.weather[0].description}
                   </div>
                 </div>
                 <div className="grid grid-cols-3 gap-4 mt-6">
-                  <div className="text-center">
+                  <div className="text-center bg-white/30 dark:bg-slate-800/40 rounded-2xl p-3">
                     <Thermometer className="w-6 h-6 mx-auto text-orange-500" />
                     <div className="mt-2 text-sm text-gray-500">Feels Like</div>
                     <div className="font-semibold">
@@ -113,7 +122,7 @@ export default function Home() {
                     </div>
                   </div>
 
-                  <div className="text-center">
+                  <div className="text-center bg-white/30 dark:bg-slate-800/40 rounded-2xl p-3">
                     <Droplets className="w-6 h-6 mx-auto text-blue-500" />
                     <div className="mt-2 text-sm text-gray-500">Humidity</div>
                     <div className="font-semibold">
@@ -121,7 +130,7 @@ export default function Home() {
                     </div>
                   </div>
 
-                  <div className="text-center">
+                  <div className="text-center bg-white/30 dark:bg-slate-800/40 rounded-2xl p-3">
                     <Wind className="w-6 h-6 mx-auto text-teal-500" />
                     <div className="mt-2 text-sm text-gray-500">Wind</div>
                     <div className="font-semibold">
