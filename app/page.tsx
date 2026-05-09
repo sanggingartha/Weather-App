@@ -9,12 +9,18 @@ import { WeatherData } from "@/types/weather";
 import { Card, CardContent } from "@/components/ui/card";
 import { useFormStatus } from "react-dom";
 import { motion } from "framer-motion";
+import { ThemeToggle } from "@/components/ui/themetoggle";
 
 function SubmitButton() {
   const { pending } = useFormStatus();
 
   return (
-    <Button type="submit" disabled={pending}>
+    <Button
+      type="submit"
+      variant="outline"
+      disabled={pending}
+      className="bg-white/90 dark:bg-slate-800 dark:border-slate-700 dark:hover:bg-slate-700"
+    >
       {pending ? (
         <Loader2 className="w-4 h-4 animate-spin" />
       ) : (
@@ -46,18 +52,19 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-linear-to-b from-blue-500 to to-sky-200 p-4 flex items-center justify-center">
+    <div className="min-h-screen bg-linear-to-b from-blue-500 to-sky-200 dark:from-slate-900 dark:to-slate-800 p-4 flex items-center justify-center">
       <div className="w-full max-w-md space-y-4">
         <form action={handleSearch} className="flex gap-2">
           <Input
             name="city"
             type="text"
             placeholder="Enter the city name...."
-            className="bg-white/90"
+            className="bg-white/90 dark:bg-slate-800 dark:text-white dark:border-slate-700"
             autoComplete="off"
             required
           />
           <SubmitButton />
+          <ThemeToggle />
         </form>
 
         {error && (
@@ -78,7 +85,7 @@ export default function Home() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4 }}
           >
-            <Card className="bg-white/50 backdrop-blur">
+            <Card className="bg-white/50 dark:bg-slate-900/50 backdrop-blur border-white/20 dark:border-slate-700">
               <CardContent>
                 <div className="text-center m-4">
                   <h2 className="text-2xl font-bold">{weather.name}</h2>
