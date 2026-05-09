@@ -52,7 +52,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-linear-to-b from-blue-500 to-sky-200 dark:from-slate-900 dark:to-slate-800 p-4 flex items-center justify-center">
+    <div className="min-h-dvh bg-linear-to-b from-blue-500 to-sky-200 dark:from-slate-900 dark:to-slate-800 p-4 flex justify-center pt-20 md:items-center md:pt-0">
       <div className="w-full max-w-md space-y-4">
         <form action={handleSearch} className="flex gap-2">
           <Input
